@@ -47,4 +47,52 @@ inUrl = input("Paste Youtube URL: ")
 #streamData = get_youtube_stream_url(inUrl)
 streamData = getVideo(inUrl)
 #print(streamData)
-print(f"Title: {streamData['title']} \nFormat: {streamData['format']} \nURL: {streamData['url']}")
+#print(f"Title: {streamData['title']} \nFormat: {streamData['format']} \nURL: {streamData['url']}")
+
+
+#f = open("ytformat_data.json","w")
+#f.write(str(streamData['formats'][0]))
+#f.close
+formatlist=[]
+audioOnlyList=[]
+videoOnlyList=[]
+videoList=[]
+#for each format get the format_id
+for f in streamData['formats']:
+    #print (f['format_id'])
+    try:
+        filesize = round(float(f['filesize'])/1024/1024,1)
+    except:
+        filesize = float(0)
+
+    formatRec = [f['format_id'],f['format'],filesize,f['vcodec'],f['acodec'],f['ext']]
+
+    if((f['vcodec'] != 'none') and (f['acodec'] != 'none')):
+        videoList.append(formatRec)
+    
+    if((f['vcodec'] == 'none') and (f['acodec'] != 'none')):
+        audioOnlyList.append(formatRec)
+
+    if((f['vcodec'] != 'none') and (f['acodec'] == 'none')):
+        videoOnlyList.append(formatRec)        
+
+
+    formatlist.append(formatRec)
+
+
+
+print("--List with audio and video--------")
+
+for f in videoList:
+    print (f)
+
+print("--List with only audio -------------")
+
+for f in audioOnlyList:
+    print (f)
+
+print("--List with only video -------------")
+for f in videoOnlyList:
+    print (f)
+
+print("-----------------------------------")                    
