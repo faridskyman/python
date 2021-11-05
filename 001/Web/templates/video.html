@@ -1,0 +1,97 @@
+$def with (videoInfo)
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+
+    <title>Video Viewer</title>
+
+    <link href="./static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./static/css/style.css" rel="stylesheet">
+
+
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="header clearfix">
+        <h3 class="text-muted">&nbsp;</h3>
+      </div>
+
+      <div class="jumbotron">
+
+
+
+        <div class="row">
+        <div class="col-md-2">
+          <div class="media">
+            <img class="mr-3" src="$videoInfo['thumbnail']" width="150px">
+            </div>
+          </div>
+          <div class="col-md-10">
+            <h2 class="mt-0">$videoInfo['title']</h2>
+          </div>
+        </div>
+        <div class="row"><p></p></div>
+
+
+
+ 
+      <div data-component-video="">
+        <video src="$videoInfo['url']" autoplay="autoplay" controls muted style="height: 100%; width: 100%;">
+        </video>
+      </div>
+      
+      <p>$videoInfo['uploader'] | Duration: $videoInfo['duration'] | Views: $videoInfo['view_count']</p>
+
+     
+
+      <p>Tags: $videoInfo['tags']</p>
+
+      
+
+
+
+
+  
+    
+    </div>
+
+      <div class="row marketing">
+        <div class="col-lg-6">
+          <h4>Format</h4>
+          <p>$videoInfo['format']</p>
+
+          
+          
+
+          
+          
+        </div>
+
+        <div class="col-lg-6">
+          <h4>Description</h4>
+          <p>$videoInfo['description']</p>
+
+          
+          
+
+          
+          
+        </div>
+      </div>
+
+      <footer class="footer">
+        <p>© Skylabs 2021</p>
+      </footer>
+
+    </div> <!-- /container -->
+  
+
+</body>
+</html>
