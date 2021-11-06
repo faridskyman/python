@@ -19,9 +19,9 @@ def getVideo(in_url, format):
         "quiet" : True, #dont show verbose message
         "simulate" : True,  #dont download file
         "call_home" : False, #dont contact youtubedl server for debugging
-        #"format": format
+        "format": format
         #"format": "18" #works
-        "format": "best[ext=mp4]" #works
+        #"format": "best[ext=mp4]" #works
         #"format": "best" #works
     }
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:

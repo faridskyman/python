@@ -56,7 +56,7 @@ $def with (videoInfo)
       
       <p>$videoInfo['uploader'] | Duration: $videoInfo['duration'] | Views: $videoInfo['view_count']</p>
 
-     
+      <p>$videoInfo['webpage_url']</p>
 
       <p>Tags: $videoInfo['tags']</p>
 
@@ -71,7 +71,7 @@ $def with (videoInfo)
         </tr>
       $for f in videoInfo['formats']:
         <tr>
-          <td>$f['format_id']</a></td>
+          <td><a href="/getvideostream?yturl=$videoInfo['webpage_url']&formatID=$f['format_id']">$f['format_id']</a></a></td>
           <td>$f['format']</td>
           <td>$f['filesize']</td>
           <td>$f['vcodec']</td>
