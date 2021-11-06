@@ -12,12 +12,15 @@ web.config.debug = True
 from web.template import ALLOWED_AST_NODES
 ALLOWED_AST_NODES.append('Constant')
 
-def getVideo(in_url):
+def getVideo(in_url, format):
+    #format = "18"
     ydl_opts = {
         "forceurl" : True, #Force printing final URL.
         "quiet" : True, #dont show verbose message
         "simulate" : True,  #dont download file
         "call_home" : False, #dont contact youtubedl server for debugging
+        #"format": format
+        #"format": "18" #works
         "format": "best[ext=mp4]" #works
         #"format": "best" #works
     }
@@ -51,10 +54,18 @@ class Index:
         if(name == "getvideo"):
             try:
                 data = web.input()
-                videoInfo = getVideo(data.yturl)
+                videoInfo = getVideo(data.yturl, "best[ext=mp4]")
+                return self.render.video(videoInfo)
+            except Exception as e: 
+                #print(e)
+                return self.render.index(["Error, video info could be missing."])    
+        elif(name == "getvideostream"):
+            try:
+                data = web.input()
+                videoInfo = getVideo(data.yturl, data.formatID)
                 return self.render.video(videoInfo)
             except:
-                return self.render.index(["Error, video info could be missing."])    
+                return self.render.index(["Error, video info could be missing."])   
         else:
             return self.render.form("")
         #render.index <-- 'index' is the html file in 'templates' folder

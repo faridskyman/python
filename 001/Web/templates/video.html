@@ -13,6 +13,13 @@ $def with (videoInfo)
     <link href="./static/css/bootstrap.min.css" rel="stylesheet">
     <link href="./static/css/style.css" rel="stylesheet">
 
+    <style>
+      th, td {
+      padding: 6px;
+      }
+    </style>
+
+
 
   </head>
 
@@ -43,7 +50,7 @@ $def with (videoInfo)
 
  
       <div data-component-video="">
-        <video src="$videoInfo['url']" autoplay="autoplay" controls muted style="height: 100%; width: 100%;">
+        <video src="$videoInfo['url']" autoplay="autoplay" controls style="height: 100%; width: 100%;">
         </video>
       </div>
       
@@ -53,9 +60,29 @@ $def with (videoInfo)
 
       <p>Tags: $videoInfo['tags']</p>
 
+      <table border="1" id="mytable"> 
+        <tr>
+          <th>FormatID</th>
+          <th>Format</th>
+          <th>Size</th>
+          <th>Video Codec</th>
+          <th>Audio Codec</th>
+          <th>Extension</th>
+        </tr>
+      $for f in videoInfo['formats']:
+        <tr>
+          <td>$f['format_id']</a></td>
+          <td>$f['format']</td>
+          <td>$f['filesize']</td>
+          <td>$f['vcodec']</td>
+          <td>$f['acodec']</td>
+          <td>$f['ext']</td>
+        </tr>  
       
+        
+        <!--/getvideostream?yturl=f['webpage_url']&formatID=f['format_id']"-->
 
-
+      </table>
 
 
   
@@ -92,6 +119,35 @@ $def with (videoInfo)
 
     </div> <!-- /container -->
   
+
+    <script lang="javascript">
+      function bytesToSize(bytes) {
+        var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+        if (bytes == 0) return '0 Byte';
+        var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+        return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
+      }
+
+      var table = document.getElementById("mytable");
+      for(var i=1, row; row = table.rows[i]; i++)
+      {
+        //alert(bytesToSize(row.cells[2].innerHTML));
+        table.rows[i].cells[2].innerHTML = bytesToSize(row.cells[2].innerHTML);
+        
+        //video codec column
+        if(table.rows[i].cells[3].innerHTML == "none")
+        {
+          table.rows[i].cells[3].innerHTML = "&nbsp;"
+        }
+        
+        //audio codec clean up
+        if(table.rows[i].cells[4].innerHTML == "none")
+        {
+          table.rows[i].cells[4].innerHTML = "&nbsp;"
+        }
+      }
+
+    </script>
 
 </body>
 </html>
