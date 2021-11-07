@@ -54,9 +54,15 @@ $def with (videoInfo)
         </video>
       </div>
       
-      <p>$videoInfo['uploader'] | Duration: $videoInfo['duration'] | Views: $videoInfo['view_count']</p>
+      <p>
+        <a href="$videoInfo['channel_url']" target="_blank">$videoInfo['uploader']</a> 
+        | Views: $videoInfo['view_count']
+        | Date: $videoInfo['upload_date']
+        | Duration: $videoInfo['duration'] 
+        
+      </p>
 
-      <p>$videoInfo['webpage_url']</p>
+      <p><a href="$videoInfo['webpage_url']" target="_blank">View in YouTube</a></p>
 
       <p>Tags: $videoInfo['tags']</p>
 

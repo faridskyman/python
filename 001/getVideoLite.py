@@ -33,6 +33,10 @@ def getVideo(in_url):
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         result = ydl.extract_info(in_url, download=False)
     
+        f = open("ytReturn_data.json","w")
+        f.write(str(result))
+        f.close
+        
         if 'entries' in result:
             video = result['entries'][0]
         else:
@@ -50,9 +54,7 @@ streamData = getVideo(inUrl)
 #print(f"Title: {streamData['title']} \nFormat: {streamData['format']} \nURL: {streamData['url']}")
 
 
-#f = open("ytformat_data.json","w")
-#f.write(str(streamData['formats'][0]))
-#f.close
+
 formatlist=[]
 audioOnlyList=[]
 videoOnlyList=[]

@@ -9,9 +9,11 @@ print(student_scores)
 sc_sum = 0
 sc_max = 0
 sc_min = 100
+sc_count =0
 
 for s in student_scores:
     #print(s)
+    sc_count+=1
     sc_sum+=s
     if (sc_max<s):
         sc_max=s
@@ -19,7 +21,7 @@ for s in student_scores:
         sc_min=s
 
 
-sc_count = len(student_scores)
+#sc_count = len(student_scores)
 sc_avg = sc_sum/sc_count
 print(f"MAX: {sc_max}, MIN: {sc_min}, AVG: {sc_avg}, SUM: {sc_sum}, COUNT: {sc_count}")
 student_scores.sort()
