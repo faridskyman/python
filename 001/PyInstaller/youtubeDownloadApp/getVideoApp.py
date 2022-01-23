@@ -64,6 +64,8 @@ def getFilename(strData):
     _title = _title.replace("<", "_")
     _title = _title.replace(">", "_")
     _title = _title.replace("`", "_")
+    _title = _title.replace("|", "_")
+    _title = _title.replace("&", " and ")    
     _type = strData['ext']
     return _title+"."+_type
 
@@ -116,7 +118,7 @@ else:
 
 userformatID=input("Enter in FormatID to download: ")
 streamData = getVideo(inUrl,userformatID)
-#print(streamData['url'])
+print(streamData['url'])
 print("downloading...")
 filename=getFilename(streamData)
 downloadStream(streamData['url'],filename)
